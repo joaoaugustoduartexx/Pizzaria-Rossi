@@ -353,6 +353,7 @@ body { background-color: var(--light); padding-bottom: 80px; /* Espaço para o c
     font-weight: bold;
     color: var(--dark);
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Footer */
