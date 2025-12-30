@@ -6,6 +6,7 @@ Principais características
 - Menu enxuto para seleção rápida de produtos.
 - Cálculo automático (ou a combinar) do valor do frete.
 - Botão de finalização via WhatsApp para fechamento rápido do pedido.
+- Há também uma parte onde o cliente pode verificar a história da pizzaria para passar confiança.
 
 Deploy
 - Projeto pronto para publicar via GitHub Pages a partir da branch `main`.
