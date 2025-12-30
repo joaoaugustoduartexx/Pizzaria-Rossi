@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="A melhor pizza da região, entregue quentinha na sua casa.">
+    <title>Rossi Pizzaria | Pedido Online</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3132/3132693.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="overlay">
+            <div class="container header-content">
+                <div class="status-badge" id="store-status">
+                    <span class="dot"></span> <span id="status-text">Verificando...</span>
+                </div>
+                <h1 id="store-name">Carregando...</h1>
+                <p>Pizza artesanal, forno a lenha e entrega flash ⚡</p>
+                <a href="#menu" class="btn-cta">Ver Cardápio</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="sticky-nav">
+        <ul id="category-list">
+            <li class="active" onclick="filterMenu('all')">Todos</li>
+            <li onclick="filterMenu('pizza')">Pizzas</li>
+            <li onclick="filterMenu('bebida')">Bebidas</li>
+            <li onclick="filterMenu('promo')">Promoções</li>
+            <li onclick="filterMenu('about')">Quem Somos</li>
+        </ul>
+    </nav>
+
+    <main class="container" id="menu">
+        <div id="half-pizza-area" class="special-btn-area">
+            <button class="btn-half" onclick="openHalfModal()">
+                <span class="icon">🍕</span> 
+                <div>
+                    <strong>Montar Pizza Meia-a-Meia</strong>
+                    <small>Escolha 2 sabores (cobraremos a maior)</small>
+                </div>
+                <i class="material-icons">chevron_right</i>
+            </button>
+        </div>
+
+        <div id="products-grid" class="products-grid">
+            </div>
+    </main>
+
+    <section id="quem-somos" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <small>TRADIÇÃO E SABOR</small>
+                    <h2>Mais que uma pizza,<br>uma experiência.</h2>
+                    <p>Fundada em 1950, a <strong>Rossi Pizzaria</strong> nasceu da paixão pela verdadeira pizza napolitana. Nossa massa passa por <strong>48 horas de fermentação natural</strong>, resultando em uma borda leve, aerada e crocante.</p>
+                    <p>Usamos apenas molho de tomate pelati italiano e <strong>ingredientes selecionados diariamente</strong>. Não vendemos apenas pizza, entregamos carinho e uma experiência em forma de fatias.</p>
+                    <div class="features">
+                        <span>🍅 Molho Italiano</span>
+                        <span>🔥 Forno a Lenha</span>
+                        <span>🌿 Manjericão Fresco</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="assets/Rossi pizzaria.png" alt="Família Rossi Pizzaria" onerror="this.src='https://images.unsplash.com/photo-1595295333158-4742f28fbd85?q=80&w=500'">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p>© 2025 Rossi Pizzaria feito com amor e farinha </p>
+    </footer>
+
+    <div class="cart-bar" id="cart-bar" onclick="toggleCartModal()">
+        <div class="cart-info">
+            <p>Meu Pedido</p>
+            <span id="cart-count">0 itens</span>
+        </div>
+        <div class="cart-total">
+            <span id="cart-total-price">R$ 0,00</span>
+            <i class="material-icons">shopping_bag</i>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Seu Carrinho</h2>
+                <button onclick="toggleCartModal()"><i class="material-icons">close</i></button>
+            </div>
+            
+            <div class="modal-body" id="cart-items">
+                <p class="empty-msg">Seu carrinho está vazio 🍕</p>
+            </div>
+            
+            <div class="modal-footer">
+                
+                <div class="total-row" style="margin-bottom: 5px; color: #555; font-size: 0.95rem;">
+                    <span>Entrega (<span id="distance-display">Calculando...</span>):</span>
+                    <span id="delivery-price">--</span>
+                </div>
+
+                <div class="total-row" style="font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 10px;">
+                    <span>Total:</span>
+                    <strong id="modal-total-price">R$ 0,00</strong>
+                </div>
+                
+                <div class="input-group">
+                    <label>Seu Nome:</label>
+                    <input type="text" id="client-name" placeholder="Digite seu nome">
+                </div>
+
+                <div class="address-grid">
+                    <div class="input-group">
+                        <label>CEP (Só números):</label>
+                        <input type="tel" id="client-cep" placeholder="00000000" maxlength="8" inputmode="numeric" oninput="mascaraCep(this)">
+                    </div>
+                    <div class="input-group">
+                        <label>Número:</label>
+                        <input type="number" id="client-number" placeholder="Nº">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Rua:</label>
+                    <input type="text" id="client-street" placeholder="Rua..." disabled>
+                </div>
+
+                <div class="input-group">
+                    <label>Bairro:</label>
+                    <input type="text" id="client-neighborhood" placeholder="Bairro..." disabled>
+                </div>
+
+                <div class="input-group">
+                    <label>Cidade/UF:</label>
+                    <input type="text" id="client-city" placeholder="Cidade" disabled>
+                </div>
+
+                <div class="input-group">
+                    <label>Complemento / Obs:</label>
+                    <input type="text" id="client-complement" placeholder="Apto, Bloco, Ponto de referência...">
+                </div>
+
+                <button class="btn-whatsapp" onclick="checkout()">
+                    <i class="material-icons">whatsapp</i>
+                    <span>Finalizar no WhatsApp</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="half-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Montar Meia-a-Meia</h2>
+                <button onclick="closeHalfModal()"><i class="material-icons">close</i></button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 15px; color:#666; font-size: 0.9rem;">Escolha os dois sabores. O valor será o do sabor mais caro.</p>
+                
+                <div class="select-group">
+                    <label>1º Sabor (Meia):</label>
+                    <select id="half-1"></select>
+                </div>
+                
+                <div class="select-group" style="margin-top:15px;">
+                    <label>2º Sabor (Meia):</label>
+                    <select id="half-2"></select>
+                </div>
+
+                <div class="half-price-preview" id="half-price-display">
+                    Valor: R$ 0,00
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-whatsapp" style="background-color: var(--primary);" onclick="addHalfToCart()">
+                    Adicionar ao Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
